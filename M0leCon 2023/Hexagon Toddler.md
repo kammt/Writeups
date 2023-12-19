@@ -207,6 +207,6 @@ for i in range (1, 11):
 
 But wait, how do we know the address of `system`? Well, `qemu` does not seem to randomize the library layout, so once you know where the libc is, you can hardcode that address. As I had to find out later though, the address mapping is not constant across devices. To verify that `chall` was still at the right address, I returned into the plt entry of puts, with the address `secret+0x230` as an argument. Since it was the same, I got the expected value, `"/bin/sh"`. To find out what the `system` address is on our target, I jumped to the plt entry of `puts`, with the got-address of `puts` as an argument. And there we had it: Simply adding `0x200000` to my hardcoded `system`-address did the trick!
 
-Running the exploit against the remote server and running `cat flat.txt` in the shell gave me the flag for this challenge: `ptm{qu4lC0mm_94V3_m3_l3m0n5_50_1_m4d3_L3M0n4D3}`.
+Running the exploit against the remote server and running `cat flag.txt` in the shell gave me the flag for this challenge: `ptm{qu4lC0mm_94V3_m3_l3m0n5_50_1_m4d3_L3M0n4D3}`.
 
 The challenge was solved by 8/10 teams during the CTF, and in the end was worth 129 points.
